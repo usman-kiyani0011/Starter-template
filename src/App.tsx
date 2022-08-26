@@ -2,8 +2,11 @@ import { Box, Button, Grid, TextField } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
 import { useState } from "react";
 import "./App.css";
+import { addBook } from "./store/features/book-slice";
+import { useAppDispatch } from "./store/store";
 
 function App() {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
     id: nanoid(),
     name: "dvdvdvd",
@@ -23,22 +26,21 @@ function App() {
     //   ...prev,
     //   { name: value, author: value, price: value },
     // ]);
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: value,
-      };
-    });
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
 
-    console.log({ formData1 });
+    // console.log({ formData1 });
   };
   const saveHandler = () => {
-    formData1.push(formData);
-    console.log(formData1);
-    const newArr = formData1.findIndex((i) => i.id === "1");
-    console.log(newArr);
-     //formData1.push(newArr)
-   //  formData1.splice(newArr, {})
+    // formData1.push(formData);
+    // console.log(formData1);
+    // const newArr = formData1.findIndex((i) => i.id === "1");
+    // console.log(newArr);
+    //formData1.push(newArr)
+    //  formData1.splice(newArr, {})
+    dispatch(addBook(formData));
   };
   return (
     <Box

@@ -1,7 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import bookReducer from "./features/book-slice";
 const store = configureStore({
-  reducer: {},
+  reducer: {
+    books: bookReducer,
+  },
 });
 
 export type AppDispatch = typeof store.dispatch;
